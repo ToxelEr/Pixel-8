@@ -1,6 +1,6 @@
 # Pixel-8
 a fantasy console for making , tiny games or art
-![Pixel-8](/img/pixel8.png "pixel-8")
+![Pixel-8](/pixel8.png "pixel-8")
 
 # Specifications
 | ‌ | ‌ |
