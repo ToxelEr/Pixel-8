@@ -1,0 +1,38 @@
+;paint.net Palette File
+;Downloaded from fancade-colorpicker
+;Palette Name: Fancade
+;Description: Fancade Palette
+;Colors: 33
+FFdb9191
+FFbb677a
+FF904f5a
+FFffe3e3
+FFffcab8
+FFf5aba0
+FFab86ff
+FF896bd6
+FF66519e
+FFffb3e4
+FFff90ca
+FFe66ca7
+FFff9696
+FFff4865
+FFbb344d
+FFffa37d
+FFff6c50
+FFc84d3d
+FFffff75
+FFffcd00
+FFe9a300
+FFabff68
+FF3eba49
+FF00864a
+FF00c2ff
+FF008cff
+FF006ad4
+FFfeffff
+FFdde0f0
+FF878ba0
+FF5b5b76
+FF3c3c50
+FF1a1a25

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <title>init</title>
+</head>
+
+<body>
+   <style>
+      #line {
+         background: rgb(91,91,118);
+         position: absolute;
+         bottom: 0;
+         left: 0;
+         border: 0;
+      }
+      #line:hover , #line:focus {
+         outline: 0;
+      }
+      
+      @media (orientation: portrait) {
+         #line-input {
+            overflow-y: auto;
+            height: calc(100vw - 15vw);
+         }
+         #line {
+            width: calc(100% - 4px);
+            height: 15vw;
+         }
+      }
+      @media (orientation: landscape) {
+         #line-input {
+            overflow-y: auto;
+            height: calc(100vh - 15vh);
+         }
+         #line {
+            width: calc(100% - 4px);
+            height: 15vh;
+         }
+      }
+   </style>
+   
+   <div class="screen">
+      
+      <div id="line-input">
+         pixel-8<img src="img/icon.png" class="icon"></img>
+         <br>
+         <br>
+         (C) 2022 Toxel
+         <br>
+         <br>
+         Type Help() For Help
+      </div>
+      <input id="line">
+   </div>
+   
+   <script>
+/*'rgb(26,26,37)',
+'rgb(60,60,80)',
+'rgb(91,91,118)',
+'rgb(135,139,160)',
+'rgb(221,224,240)',
+'rgb(254,255,255)',
+'rgb(144,79,90)',
+'rgb(187,103,122)',
+'rgb(219,145,145)',
+'rgb(245,171,160)',
+'rgb(255,202,184)',
+'rgb(255,227,227)',
+'rgb(187,52,77)',
+'rgb(255,72,101)',
+'rgb(255,150,150)',
+'rgb(200,77,61)',
+'rgb(255,108,80)',
+'rgb(255,163,125)',
+'rgb(233,163,0)',
+'rgb(255,205,0)',
+'rgb(255,255,117)',
+'rgb(0,134,74)',
+'rgb(62,186,73)',
+'rgb(171,255,104)',
+'rgb(0,106,212)',
+'rgb(0,140,255)',
+'rgb(0,194,255)',
+'rgb(102,81,158)',
+'rgb(137,107,214)',
+'rgb(171,134,255)',
+'rgb(230,108,167)',
+'rgb(255,144,202)',
+'rgb(255,179,228)'*/
+      
+      line_input = document.getElementById('line-input');
+      line = document.getElementById('line');
+      
+      document.onkeydown = checkKey;
+      function checkKey(e) {
+      e = e || window.event;
+      if (e.keyCode == '13') {
+            line_input.innerHTML = line_input.innerHTML + '<br><br>' + '>' + line.value;
+            eval(line.value);
+            line.value = '';
+         }
+      }
+      
+      function help() {
+         line_input.innerHTML = line_input.innerHTML+'<br><br><br>'+"Commands:"+"<br><br>"+"‌ help()"+"<br><br>"+"‌ run('cart')"+"<br><br>"+"‌ editor()";
+      }
+      
+      function run(x) {
+         window.location.href = "player.html?cart=" + x + '';
+      }
+      
+      function editor() {
+        window.location.href = "editor.html";
+      }
+      
+   </script>
+</body>
+
+</html>

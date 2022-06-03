@@ -1,0 +1,289 @@
+@font-face {
+  font-family: 'pixel8';
+  src: url('font/pixel8a.woff');
+}
+  
+* {
+   font-family: 'pixel8';
+   color: #fff;
+   image-rendering: pixelated;
+}
+
+body , html{
+   margin: 0;
+   padding: 0;
+   background: rgb(26,26,37);
+   overflow: none;
+   user-select: none;
+   -webkit-user-select: none;
+}
+
+.icon {
+   width: 5%;
+   transform: translateX(-7.5px) translateY(3px);
+}
+
+.canvas , .screen {
+   border: 5px solid rgb(26,26,37);
+   background: rgb(26,26,37);
+   font-smooth: none;
+   -webkit-font-smoothing : none;
+}
+
+#input {
+   border: 5px solid rgb(26,26,37);
+   background: rgb(60,60,80);
+   resize: none;
+}
+
+#input:hover {
+   outline: none;
+}
+
+#input::placeholder {
+   color: rgb(221,224,240);
+}
+
+.console-div {
+   background: rgb(60,60,80);
+   border: 5px solid rgb(26,26,37);
+}
+
+#tab1, #tab2, #tab3 {
+   width: 32px;
+   height: 32px;
+   border: 2px solid rgb(135,139,160);
+   background: rgb(221,224,240);
+   box-shadow: 0px 3px #64677F;
+   z-index: 10;
+}
+
+#tab1:hover , #tab2:hover , #tab3:hover {
+   transform: translateY(3px);
+   box-shadow: 0px 0px #64677F;
+}
+
+.icon1,.icon2,.icon3 {
+   width: 16px;
+   height: 16px;
+   background-image: url(img/atlas.png);
+   background-size: 400%;
+}
+
+.icon1 {
+   background-position: -30px 0px;
+}
+.icon2 {
+   background-position: -16.4px 0px;
+   background-size: 464%;
+   transform: translateX(1px);
+   width: 14px;
+   height: 16px;
+}
+.icon3 {
+   background-position: 0px 0px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(135,139,160); 
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(221,224,240); 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(187,52,77); 
+}
+
+@media (orientation: portrait) {
+   * {
+      font-size: 10vw;
+      line-height: 3vw;
+   }
+
+   .canvas {
+      width: calc(100vw - 11px);
+      height: calc(100vw - 10px);
+      position: absolute;
+      top: 0;
+   }
+   
+   .screen {
+      height: calc(100vw - 10px);
+      width: calc(100vw - 10px);
+      position: absolute;
+   }
+   
+   #input {
+      width: calc(100vw - 15px);
+      height: calc((100vh - 100vw) - 15px);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+   }
+   
+   .console-div {
+      width: calc(100vw - 11px);
+      height: calc((100vh - 100vw) - 11px);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+   }
+   
+   #console {
+      height: calc((100vh - 100vw) - 64px);
+      margin: 16px;
+      overflow-y: auto;
+      width: calc(100vw - 96px);
+   }
+   
+   #tab1 ,#tab2 ,#tab3 {
+      position: absolute;
+      right: 20px;
+      bottom:  20px;
+   }
+   #left-keys {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: 5vw;
+      left: 5vw;
+      height: 45vw;
+      width: 45vw;
+   }
+   #right-keys {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: 5vw;
+      right: 5vw;
+      height: 45vw;
+      width: 45vw;
+   }
+   #key-o,#key-x,#key-up,#key-down,#key-left,#key-right {
+      background: #ddf5;
+   }
+   #key-x {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: 0;
+      right: 22vw;
+      width: 20vw;
+      height: 20vw;
+      margin: 2px;
+      border-radius: 50vw;
+   }
+   #key-o {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      bottom: 22vw;
+      right: 0;
+      width: 20vw;
+      height: 20vw;
+      margin: 2px;
+      border-radius: 50vw;
+   }
+   #key-up {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 0;
+      left: 15vw;
+      width: 15vw;
+      height: 15vw;
+      border-radius: 50vw 50vw 0vw 0vw;
+   }
+   #key-left {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 15vw;
+      left: 0;
+      width: 15vw;
+      height: 15vw;
+      border-radius: 50vw 0vw 0vw 50vw;
+   }
+   #key-right {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 15vw;
+      left: 30vw;
+      width: 15vw;
+      height: 15vw;
+      border-radius: 0vw 50vw 50vw 0vw;
+   }
+   #key-down {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      top: 30vw;
+      left: 15vw;
+      width: 15vw;
+      height: 15vw;
+      border-radius: 0vw 0vw 50vw 50vw;
+   }
+}
+
+@media (orientation: landscape) {
+   * {
+      font-size: 10vh;
+      line-height: 3vh;
+   }
+   
+   .canvas , .screen{
+      width: calc(100vh - 10px);
+      height: calc(100vh - 10px);
+      position: absolute;
+      left: calc(50vw - (100vh - 50vh));
+      z-index: 2;
+   }
+   
+   #input {
+      width: calc(100vh - 14px);
+      height: calc(100vh - 15px);
+      position: absolute;
+      left: calc(25vw + 10px);
+   }
+   
+   .console-div {
+      width: calc(100vh - 10px);
+      height: calc(100vh - 11px);
+      position: absolute;
+      left: calc(25vw + 10px);
+   }
+   
+   #tab1,#tab2,#tab3 {
+      position: absolute;
+      left: calc(45vh - 5px);
+      top: 5px;
+   }
+   
+   #console {
+      height: calc(100vh - 96px);
+      margin: 16px;
+      overflow-y: auto;
+      width: calc(100vh - 96px);
+   }
+   #left-keys {
+      display: none;
+   }
+   #right-keys {
+      display: none;
+   }
+}
