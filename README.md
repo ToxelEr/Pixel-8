@@ -84,5 +84,5 @@ used with function!
 
 ## Creating New Project
 * 1 - Copy empty folder in carts folder 
-* 2 - Raname it 
+* 2 - Rename it 
 * 3 - Edit main.js or sprite.png
