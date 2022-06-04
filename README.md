@@ -70,12 +70,12 @@ used with function!
 
 ### PC Users
 * 1 - Download Source Code and extract
-* 2 - Open Pixel-8.html using your browser
+* 2 - Open Player.html using your browser
 
 ### Phone Users
 * 1 - Install a html , js editor
 * 2 - Download Source Code and extract
-* 3 - Open Pixel-8.html using html editor
+* 3 - Open Player.html using html editor
 * 4 - run it
 
 #### Type help() for help
