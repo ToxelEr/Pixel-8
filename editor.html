@@ -1,43 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
 <head>
-<title>Pixel-8</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
 </head>
+
 <body>
+  <textarea id="input"></textarea>
+  <button id="btn"></button>
 
-<script>
-  
-  function tab(x,y) {
-    document.getElementById(x.x).style.display = "none";
-    document.getElementById(x.y).style.display = "none";
-    document.getElementById(y).style.display = "block";
-  }
-  
-</script>
-
-<canvas id="pixel8" class="screen"></canvas>
-<canvas id="blank" style="display:none"></canvas>
-
-<button onclick="tab()" id="tab1"><div class="icon1"></div></button>
-
-<textarea type="input" id="input" class="input-div" placeholder="Type Your Code Here...">
-</textarea>
-
-<button onclick="tab()" id="tab2"><div class="icon2"></div></button>
-
-<div id="codiv" class="console-div">
-   <span>cartridge is</span>
-   <span id="boot">Not Working :(</span>
-   <br>
-   <div id="console"></div>
-</div>
-
-<button onclick="tab({x:'tab3',y:'codiv'},'input')" id="tab3"><div class="icon3"></div></button>
-
-<script src="pixel-8.js"></script>
-<script>Boot(64,64)</script>
-
+  <script>
+    document.querySelector('#btn').onclick = function() {
+      window.location = 'viewer.html?cart='+(encodeURIComponent(document.querySelector('#input').value))
+    }
+  </script>
 </body>
+
 </html>

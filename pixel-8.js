@@ -1,26 +1,6 @@
 //Pixel-8.js
 
-//All Rights Reserved 2022 Toxel
-
-//palette
-var colors_pico8 = [
-   'rgb(0,0,0)',
-   'rgb(29,43,83)',
-   'rgb(126,37,83)',
-   'rgb(0,135,81)',
-   'rgb(171,82,54)',
-   'rgb(95,87,79)',
-   'rgb(194,195,199)',
-   'rgb(255,241,232)',
-   'rgb(255,0,77)',
-   'rgb(255,163,0)',
-   'rgb(255,236,39)',
-   'rgb(0,228,54)',
-   'rgb(41,173,255)',
-   'rgb(131,118,156)',
-   'rgb(255,119,168)',
-   'rgb(255,204,170)'
-];
+//All Rights Reserved 2022 @ToxelEr_
 
 //canvas
 var canvas = document.querySelector('#canvas');
@@ -45,8 +25,36 @@ function boot(screenX,screenY) {
     }
 })();*/
 
-function rgb(r,g,b) {
-  return {x:r ,y:g ,z:b};
+var compositionTypes = [
+  'source-in',
+  'source-out',
+  'source-atop',
+  'destination-over',
+  'destination-in',
+  'destination-out',
+  'destination-atop',
+  'lighter',
+  'copy',
+  'xor',
+  'multiply',
+  'screen',
+  'overlay',
+  'darken',
+  'lighten',
+  'color-dodge',
+  'color-burn',
+  'hard-light',
+  'soft-light',
+  'diffrence',
+  'exclusion',
+  'hue',
+  'saturation',
+  'color',
+  'luminosity'
+];
+
+function xyznrgb(r,g,b) {
+  return {x:r/255 ,y:g/255 ,z:b/255};
 }
 
 let palette=[];
@@ -95,9 +103,9 @@ for (let x = 0; x < 11; x++) {
   }
 }
 
-function sprite(cart) {
+function sprite(url) {
   img = new Image();
-  img.src = 'carts/' + cart + '/sprite.png';
+  img.src = url;
   document.body.appendChild(img);
   img.style.display = 'none';
   img.classList.add('sprite');
@@ -106,18 +114,22 @@ function sprite(cart) {
 function spr(x,y,i,j) {
   img = document.querySelector('.sprite');
   ctx.imageSmoothingEnabled = false;
-  ctx.drawImage(img,i,j,8,8,x,y,8,8);
+  ctx.drawImage(img,i*8,j*8,8,8,x,y,8,8);
 }
 
-function sspr(x,y,w,h,x1,y1,w1,h1) {
+function sspr(x,y,w,h,x1,y1,w1,h1,r) {
+  ctx.save();
   img = document.querySelector('.sprite');
   ctx.imageSmoothingEnabled = false;
+  ctx.translate(x+w/2,y+h/2);
+  ctx.rotate(r * (Math.PI/180));
+  ctx.translate(-x-w/2,-y-h/2);
   ctx.drawImage(img,x1,y1,w1,h1,x,y,w,h);
+  ctx.restore();
 }
 
 //rotate x,y by z
-function rotate(x1,y1,x,y,angle) {
-  a = angle
+function rotation(x1,y1,x,y,a) {
   var radians = (Math.PI / 180) * a;
   cos = Math.cos(radians);
   sin = Math.sin(radians);
@@ -138,7 +150,7 @@ function flr(x) {
 
 //radians to degrees
 function deg(x) {
-   return x/(180/Math.PI);
+   return x * Math.PI / 180;
 }
 
 //clear screen
@@ -149,21 +161,33 @@ function cls(x) {
 
 //calculate distance between 2 point in 3d space 
 //distance({x:1,y:2,z:3},{x:3,y:2,z:1});
-function distance(v1, v2) {
+function distance2D(v1, v2) {
+    var a = v2.x - v1.x;
+    var b = v2.y - v1.y;
+    return Math.sqrt(a*a+b*b);
+}
+function distance3D(v1, v2) {
     var a = v2.x - v1.x;
     var b = v2.y - v1.y;
     var c = v2.z - v1.z;
+    return Math.sqrt(a*a+b*b+c*c);
+}
 
-    return Math.hypot(a,b,c);
+//rotation between two points
+function lookAt2D(v1,v2) {
+  return Math.atan2(v2.y - v1.y, v2.x - v1.x) * 180 / Math.PI;
+}
+function lookAt3D(v1,v2) {
+  return Math.atan2(v2.y - v1.y, v2.x - v1.x) * 180 / Math.PI;
 }
 
 //RGB to index
-function rgbi(r,g,b,list) {
+function rgb2index(r,g,b,list) {
   let id = 0;
   let min = Infinity;
   for (let i = 0; i < list.length; i++) {
-    col = eval(list[i]);
-    a = distance({x:r,y:g,z:b},col);
+    col = eval('xyzn'+list[i]);
+    a = distance3D({x:r/255,y:g/255,z:b/255},col);
     if (a < min) {
       id = i;
       min = a;
@@ -173,7 +197,7 @@ function rgbi(r,g,b,list) {
 }
 
 //RGB to color
-function rgbc(r,g,b) {
+function rgb2color(r,g,b) {
   return 'rgb('+r+','+g+','+b+')';
 }
 
@@ -233,6 +257,22 @@ function rectfill(x,y,sx,sy,c) {
    ctx.fillStyle = c;
    ctx.fillRect(x,y,sx,sy);
    ctx.fill();
+}
+
+function rectrot(x,y,sx,sy,c,r) {
+   x = Math.round(x)-sx/2;
+   y = Math.round(y)-sy/2;
+   sx = Math.round(sx);
+   sy = Math.round(sy);
+   ctx.save();
+   ctx.beginPath();
+   ctx.translate(x+sx/2,y+sy/2);
+   ctx.rotate(r * (Math.PI/180));
+   ctx.translate(-x-sx/2,-y-sy/2);
+   ctx.fillStyle = c;
+   ctx.fillRect(x,y,sx,sy);
+   ctx.fill();
+   ctx.restore();
 }
 
 //Draw Triangle
