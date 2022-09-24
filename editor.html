@@ -13,7 +13,7 @@
 
   <script>
     document.querySelector('#btn').onclick = function() {
-      window.location = 'viewer.html?cart='+(encodeURIComponent((document.querySelector('#input').value).replace('\n', '\\n')))
+      window.location = 'viewer.html?cart='+(encodeURIComponent(document.querySelector('#input').value))
     }
   </script>
 </body>
